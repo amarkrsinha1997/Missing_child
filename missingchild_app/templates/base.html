@@ -31,6 +31,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Password Setting</a>
+
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
               </div>
@@ -66,9 +67,11 @@
 {% endif %}
   </header>
 
-    <main class="container card text-center jumbotron" style="padding:20px; margin-top:4em; ">
+    <main class="container card text-center jumbotron" style=" max-width:35em; padding:20px; margin-top:8em; ">
       {% block content %}
       {% endblock %}
+      {{user.birth_date}}
+      {{user.phone_number}}
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
