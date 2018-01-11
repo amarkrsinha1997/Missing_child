@@ -1,23 +1,25 @@
 {% extends 'base.html' %}
 
   {% block content %}
-  <h2 class="text-primary">Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-    <div class="form-row form-group">
-      <div class="col-md-3 col-sm-12 col-form-label-lg">{{ field.label_tag }}</div>
-      <div class="col-md-9 col-sm-12">{{ field }}</div>
+  <div style="max-width:35em; padding:20px;" class="container-fluid card">
+    <h2 class="text-primary">Sign up</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="form-row form-group">
+        <div class="col-md-3 col-sm-12 col-form-label-lg">{{ field.label_tag }}</div>
+        <div class="col-md-9 col-sm-12">{{ field }}</div>
 
-      {% if field.label == "Birth date" %}
-      <div class="col-md-3 col-sm-12 col-form-label-lg"></div>
-      <div class="col-md-9 col-sm-12">{{ field.help_text }}</div>
-      {% endif %}
-    </div>
-      {% for error in field.errors %}
-        <p style='color: red;'>{{ error }}</p>
+        {% if field.label == "Birth date" %}
+        <div class="col-md-3 col-sm-12 col-form-label-lg"></div>
+        <div class="col-md-9 col-sm-12">{{ field.help_text }}</div>
+        {% endif %}
+      </div>
+        {% for error in field.errors %}
+          <p class="alert alert-danger" role="alert">{{ error }}</p>
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
-    <button class="btn btn-success" type="submit">Sign up</button>
-  </form>
+      <button class="btn btn-success" type="submit">Sign up</button>
+    </form>
+  </div>
   {% endblock %}

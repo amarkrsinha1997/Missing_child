@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+
+      {% for hidden_field in form.hidden_fields %}
+        {{ hidden_field }}
+      {% endfor %}
+
+      {% if form.non_field_errors %}
+        <div class="alert alert-danger" role="alert">
+          {% for error in form.non_field_errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% for field in form %}
+        <div class="form-row form-group">
+          <div class="col-sm-12 col-md-3 col-form-label sm">{{ field.label_tag }}</div>
+          <div class="col-sm-12 col-md-9">{{ field }}</div>
+        </div>
+        <!-- <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">{{ field.label_tag }}</span>
+          </div>
+          {{ field }}
+      </div> -->
+
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+          {{ errors }}
+        </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <!-- {{ form.as_p }} -->
+    <button class="btn btn-success" type="submit">Upload</button>
+  </form>
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+{% endblock %}

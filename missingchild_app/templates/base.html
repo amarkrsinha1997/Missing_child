@@ -5,14 +5,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"> -->
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <title>{% block title %}Missing Child{% endblock %}</title>
 </head>
 <body>
-<header class="container-fluid">
+<header class="container">
 {% if user.is_authenticated %}
       <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}">{{ user.username}}</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Missing Child</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -22,25 +23,25 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="#"></a>
-            </li>
+            </li> -->
             <li class="nav-item dropdown navbar-right">
               <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                 Settings
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Password Setting</a>
+                <!-- <a class="dropdown-item" href="#">Password Setting</a>
 
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item text-center text" href="{% url 'logout' %}">Logout</a>
               </div>
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0" >
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-          </form>
+            </form>
         </div>
       </nav>
 
@@ -67,14 +68,15 @@
 {% endif %}
   </header>
 
-    <main class="container card text-center jumbotron" style=" max-width:35em; padding:20px; margin-top:8em; ">
+    <main class="container card text-center" style=" max-width:1080px; min-height:280px; padding:10px; margin-top:8em; margin-left:auto; margin-right:auto; ">
       {% block content %}
       {% endblock %}
-      {{user.birth_date}}
-      {{user.phone_number}}
     </main>
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
+
 </body>
 </html>

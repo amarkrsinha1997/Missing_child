@@ -77,14 +77,14 @@ WSGI_APPLICATION = 'missingchild.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME':'missingchild',
-        'USER':'root',
-        'PASSWORD':'amar',
-        'HOST':'localhost',
-        'PORT':'',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME':'missingchild',
+        # 'USER':'root',
+        # 'PASSWORD':'amar',
+        # 'HOST':'localhost',
+        # 'PORT':'',
     }
 }
 
@@ -130,3 +130,6 @@ STATIC_ROOT= os.path.join(BASE_DIR,'static')
 
 LOGIN_REDIRECT_URL='/'
 LOGIN_URL ='/login'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
