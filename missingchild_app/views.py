@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, ChildRegisterForm
 from django.contrib.auth.decorators import login_required
-from .models import Child
+from .models import Child,Profile
 import pdb
 
 def home(request):
@@ -16,7 +16,7 @@ def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            user=form.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
@@ -24,6 +24,12 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+def report(request):
+    profile = Profile.objects.filter(user__username =request.user)
+    child = Child.objects.filter(user = profile)
+    return render(request,"report.html", {'child':child})
+
 
 @login_required
 def upload(request):

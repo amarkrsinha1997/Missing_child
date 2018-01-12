@@ -11,7 +11,8 @@ def user_directory_path(instance, filename):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+
 
 @receiver(post_save, sender= User)
 def update_user_profile(sender, instance, created, **kwargs):
@@ -20,8 +21,11 @@ def update_user_profile(sender, instance, created, **kwargs):
     instance.profile.save()
 
 class Child(models.Model):
-    user = models.ForeignKey(Profile,default=1)
+    user = models.ForeignKey(Profile,default=0)
     name = models.CharField(max_length=30,null=True)
-    age = models.IntegerField(blank=False,null=True)  
+    age = models.IntegerField(blank=False,null=True)
     details = models.TextField(null=True)
     image = models.ImageField(upload_to=user_directory_path)
+
+    def __str__(self):
+        return self.user.username

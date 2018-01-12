@@ -3,13 +3,13 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.forms.widgets import PasswordInput, TextInput
 from django.contrib.auth.models import User
 from .models import Child
-
+import pdb
 class CustomAutoForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput(attrs={'class':'form-control', 'placeholder':'Username'}))
     password = forms.CharField(widget=PasswordInput(attrs={'placeholder':'Password', 'class':'form-control'}))
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, label="First Name" ,required=True,help_text='Optional.')
+    first_name = forms.CharField(max_length=30, label="First Name" ,required=True, help_text='Optional.')
     last_name = forms.CharField(max_length=40,label="Last Name", required=True, help_text='Optional.')
     email = forms.EmailField(max_length=70,required=True,label="Email",help_text='Required. Inform a valid email address.')
 
@@ -21,9 +21,10 @@ class SignUpForm(UserCreationForm):
             field = self.fields.get(field_name)
             if field:
                 print field,field_name,field.widget,field.label
-                if type(field.widget) in (forms.TextInput, forms.PasswordInput,forms.EmailInput,forms.DateInput):
+                if type(field.widget) in (forms.TextInput,forms.EmailInput,forms.PasswordInput):# ,forms.DateInput
+                    #pdb.set_trace()
                     if field_name == 'email':
-                        field.widget = forms.TextInput(attrs={'placeholder': "email@address.com",'class':"form-control",})
+                        field.widget = forms.EmailInput(attrs={'placeholder': "email@address.com",'class':"form-control",})
                     elif field_name == 'passowrd1' or field_name == 'password2':
                         field.widget = forms.PasswordInput(attrs={'placeholder':"Password",'class':'form-control'})
                     else:

@@ -23,9 +23,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#"></a>
-            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'report' %}">Report</a>
+            </li>
             <li class="nav-item dropdown navbar-right">
               <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
                 Settings
@@ -68,7 +68,7 @@
 {% endif %}
   </header>
 
-    <main class="container card text-center" style=" max-width:1080px; min-height:280px; padding:10px; margin-top:8em; margin-left:auto; margin-right:auto; ">
+    <main class="container text-center" style=" max-width:1080px; min-height:280px; padding:10px; margin-top:8em; margin-left:auto; margin-right:auto; ">
       {% block content %}
       {% endblock %}
     </main>
